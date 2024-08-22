@@ -26,5 +26,5 @@ Um jogo de luta em plataforma baseado em super smash bros com objetivo de arreme
 
 # Repositorios da Aula 1
 Matheus: https://github.com/MatheuzH/DevJogos/blob/main/README.md
-Lucas: 
+Lucas: https://github.com/DandySolid46/Bajorf/tree/main
 Gabriel: 
