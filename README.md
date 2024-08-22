@@ -20,3 +20,6 @@ Um jogo de luta em plataforma baseado em super smash bros com objetivo de arreme
 - https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommunity.gamedev.tv%2Ft%2Fcyoq-cold-pillar%2F171394&psig=AOvVaw3hr0RQT9gjnycwuCKVZrpX&ust=1724454552508000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNi17fvbiYgDFQAAAAAdAAAAABAE
 - https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.newgrounds.com%2Fart%2Fview%2Fvoidomon%2Fwizord-the-wizard-robot&psig=AOvVaw3hr0RQT9gjnycwuCKVZrpX&ust=1724454552508000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNi17fvbiYgDFQAAAAAdAAAAABAJ
 - https://www.google.com/url?sa=i&url=https%3A%2F%2Ftwitter.com%2Fksmotorse%2Fstatus%2F1235885511270531073&psig=AOvVaw3hr0RQT9gjnycwuCKVZrpX&ust=1724454552508000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNi17fvbiYgDFQAAAAAdAAAAABAR
+
+# Miro
+- https://miro.com/app/board/uXjVKmn9ctw=/
