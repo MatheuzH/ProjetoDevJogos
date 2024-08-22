@@ -23,3 +23,8 @@ Um jogo de luta em plataforma baseado em super smash bros com objetivo de arreme
 
 # Miro
 - https://miro.com/app/board/uXjVKmn9ctw=/
+
+# Repositorios da Aula 1
+Matheus: https://github.com/MatheuzH/DevJogos/blob/main/README.md
+Lucas: 
+Gabriel: 
