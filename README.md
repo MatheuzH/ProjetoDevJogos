@@ -11,6 +11,7 @@ Um jogo de luta em plataforma baseado em super smash bros com objetivo de arreme
 # Estética
 - Causar intriga entre os jogadores
 - Causar êxtase aos jogadores
+- Causar um senso de maestria
 # Inpirações
 - https://pt.wikipedia.org/wiki/Super_Smash_Bros.
 - https://en.wikipedia.org/wiki/Brawlhalla
