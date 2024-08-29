@@ -23,8 +23,11 @@ Um jogo de luta em plataforma baseado em super smash bros com objetivo de arreme
 
 # Miro
 - https://miro.com/app/board/uXjVKmn9ctw=/
-
+# Integrantes
+- Gabriel Martinez
+- Lucas Liduino
+- Matheus Herzog
 # Repositorios da Aula 1
-Matheus: https://github.com/MatheuzH/DevJogos/blob/main/README.md
-Lucas: https://github.com/DandySolid46/Bajorf/tree/main
-Gabriel: 
+- Matheus: https://github.com/MatheuzH/DevJogos/blob/main/README.md
+- Lucas: https://github.com/DandySolid46/Bajorf/tree/main
+- Gabriel: https://github.com/MatheuzH/ProjetoDevJogos?tab=readme-ov-file
