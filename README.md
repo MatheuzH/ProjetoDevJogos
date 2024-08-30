@@ -1,17 +1,24 @@
-# ProjetoDevJogos
+# Arcane Automata
 # Descrição de jogo
 Um jogo de luta em plataforma baseado em super smash bros com objetivo de arremesar o inimigo para fora dos limites da arena, com o tema pós-apocalíptico de robôs mágicos que precisam lutar uns contra os outros para roubar a energia para se manterem vivos pois vivem num mundo escasso.
 # Mecânicas 
-- Movimentação
-- Ataques leves, Especias e Agarrão
+- Movimentacao horizontal 2D
+- Pulo e pulo duplo
+- Ataques leves
+- Ataques pesados
+- Ataques aereos
+- Ataques Especias
+- Parry
 # Dinâmicas 
-- Jogar para fora da plataforma
-- Combos de golpe
-- Porcetagem da vida ir aumentando conforme dano sofrido
+- Jogar oponente fora da plataforma
+- Retorno para a plataforma
+- Combos de golpes
+- Dano causado acumula em cada vez mais knockback
 # Estética
-- Causar intriga entre os jogadores
-- Causar êxtase aos jogadores
-- Causar um senso de maestria
+- Conflito entre os jogadores
+- Misterio sobre o mundo
+- Êxtase nos ataques
+- Senso de maestria sobre as mecanicas
 # Inpirações
 - https://pt.wikipedia.org/wiki/Super_Smash_Bros.
 - https://en.wikipedia.org/wiki/Brawlhalla
@@ -20,6 +27,7 @@ Um jogo de luta em plataforma baseado em super smash bros com objetivo de arreme
 - https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommunity.gamedev.tv%2Ft%2Fcyoq-cold-pillar%2F171394&psig=AOvVaw3hr0RQT9gjnycwuCKVZrpX&ust=1724454552508000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNi17fvbiYgDFQAAAAAdAAAAABAE
 - https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.newgrounds.com%2Fart%2Fview%2Fvoidomon%2Fwizord-the-wizard-robot&psig=AOvVaw3hr0RQT9gjnycwuCKVZrpX&ust=1724454552508000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNi17fvbiYgDFQAAAAAdAAAAABAJ
 - https://www.google.com/url?sa=i&url=https%3A%2F%2Ftwitter.com%2Fksmotorse%2Fstatus%2F1235885511270531073&psig=AOvVaw3hr0RQT9gjnycwuCKVZrpX&ust=1724454552508000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNi17fvbiYgDFQAAAAAdAAAAABAR
+- https://www.robotraiders.com/
 
 # Miro
 - https://miro.com/app/board/uXjVKmn9ctw=/
