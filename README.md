@@ -9,6 +9,9 @@ Um jogo de luta em plataforma baseado em super smash bros com objetivo de arreme
 - Ataques aereos
 - Ataques Especias
 - Parry
+- Dodge
+- Air dodge
+- Wavedash
 # Dinâmicas 
 - Jogar oponente fora da plataforma
 - Retorno para a plataforma
