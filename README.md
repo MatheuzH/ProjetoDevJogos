@@ -34,6 +34,8 @@ Um jogo de luta em plataforma baseado em super smash bros com objetivo de arreme
 
 # Miro
 - https://miro.com/app/board/uXjVKmn9ctw=/
+# Trello
+- https://trello.com/invite/b/66d8d93bdea95498b44a208b/ATTIfa6048fadcd54fec4fa33b18cabb8430B4AC9E0F/arcane-automata
 # Integrantes
 - Gabriel Martinez
 - Lucas Liduino
