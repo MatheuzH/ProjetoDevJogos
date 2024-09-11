@@ -1,3 +1,51 @@
-[gd_scene format=3 uid="uid://o54qwtquao1u"]
+[gd_scene load_steps=3 format=3 uid="uid://2r8s6hqkbe64"]
 
-[node name="TelaDeInicio" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://d32dj4yxpy326" path="res://WhatsApp Image 2024-09-04 at 18.52.07.jpeg" id="1_i1tf1"]
+[ext_resource type="Texture2D" uid="uid://h2rlw17msm4q" path="res://DALL·E 2024-09-11 17.37.05 - A pixel art logo for a game titled 'Arcane Automata.' The theme combines robots and magic in a post-apocalyptic world. The font should have a futurist.webp" id="2_6ges6"]
+
+[node name="tela_de_inicio" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 2
+offset_top = -249.0
+offset_right = 1153.0
+offset_bottom = 695.0
+texture = ExtResource("1_i1tf1")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_6ges6")
+expand_mode = 4
+
+[node name="Start-Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "JOGAR"
+
+[node name="Exit-Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "SAIR"
