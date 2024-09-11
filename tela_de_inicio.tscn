@@ -1,12 +1,41 @@
-[gd_scene load_steps=6 format=3 uid="uid://2r8s6hqkbe64"]
+[gd_scene load_steps=15 format=3 uid="uid://2r8s6hqkbe64"]
 
 [ext_resource type="Texture2D" uid="uid://d32dj4yxpy326" path="res://WhatsApp Image 2024-09-04 at 18.52.07.jpeg" id="1_i1tf1"]
 [ext_resource type="Script" path="res://tela_de_inicio.gd" id="1_q42b5"]
 [ext_resource type="Texture2D" uid="uid://h2rlw17msm4q" path="res://DALL·E 2024-09-11 17.37.05 - A pixel art logo for a game titled 'Arcane Automata.' The theme combines robots and magic in a post-apocalyptic world. The font should have a futurist.webp" id="2_6ges6"]
+[ext_resource type="FontFile" uid="uid://byhrifwm2q08d" path="res://Vermin Vibes 1989.ttf" id="4_5kimp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_itkat"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u0mch"]
+bg_color = Color(0.0807833, 0.0807834, 0.0807833, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x7m80"]
+bg_color = Color(0.10748, 0.10748, 0.10748, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpa7t"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_bjcdr"]
+Button/styles/hover = SubResource("StyleBoxFlat_u0mch")
+Button/styles/normal = SubResource("StyleBoxFlat_x7m80")
+Button/styles/pressed = SubResource("StyleBoxFlat_cpa7t")
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xnqvx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qogq"]
+bg_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mwtt2"]
+bg_color = Color(0.105882, 0.105882, 0.105882, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qbtmw"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_rxs1i"]
+Button/styles/hover = SubResource("StyleBoxFlat_4qogq")
+Button/styles/normal = SubResource("StyleBoxFlat_mwtt2")
+Button/styles/pressed = SubResource("StyleBoxFlat_qbtmw")
 
 [node name="tela_de_inicio" type="Control"]
 layout_mode = 3
@@ -61,6 +90,9 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_itkat")
 custom_minimum_size = Vector2(350, 40)
 layout_mode = 2
 size_flags_horizontal = 4
+theme = SubResource("Theme_bjcdr")
+theme_override_fonts/font = ExtResource("4_5kimp")
+theme_override_font_sizes/font_size = 30
 text = "JOGAR"
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
@@ -71,6 +103,9 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_xnqvx")
 [node name="Exit-Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(350, 40)
 layout_mode = 2
+theme = SubResource("Theme_rxs1i")
+theme_override_fonts/font = ExtResource("4_5kimp")
+theme_override_font_sizes/font_size = 30
 text = "SAIR"
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer2/Start-Button" to="." method="_on_start_button_pressed"]
