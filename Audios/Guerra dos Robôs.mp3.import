@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b1sha44qwb8o3"
+path="res://.godot/imported/Guerra dos Robôs.mp3-046b11d38edd1c23cfd741c990f36389.mp3str"
+
+[deps]
+
+source_file="res://Audios/Guerra dos Robôs.mp3"
+dest_files=["res://.godot/imported/Guerra dos Robôs.mp3-046b11d38edd1c23cfd741c990f36389.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

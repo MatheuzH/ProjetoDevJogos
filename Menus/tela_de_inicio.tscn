@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://2r8s6hqkbe64"]
+[gd_scene load_steps=16 format=3 uid="uid://2r8s6hqkbe64"]
 
 [ext_resource type="Script" path="res://Menus/tela_de_inicio.gd" id="1_mk5qd"]
 [ext_resource type="Texture2D" uid="uid://d32dj4yxpy326" path="res://Menus/WhatsApp Image 2024-09-04 at 18.52.07.jpeg" id="2_m3w7t"]
 [ext_resource type="Texture2D" uid="uid://h2rlw17msm4q" path="res://Menus/icone_do_jogo.webp" id="3_spwga"]
 [ext_resource type="FontFile" uid="uid://byhrifwm2q08d" path="res://Vermin Vibes 1989.ttf" id="4_sjhd5"]
+[ext_resource type="AudioStream" uid="uid://b1sha44qwb8o3" path="res://Audios/Guerra dos Robôs.mp3" id="5_0dh7x"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_itkat"]
 
@@ -107,6 +108,11 @@ theme = SubResource("Theme_rxs1i")
 theme_override_fonts/font = ExtResource("4_sjhd5")
 theme_override_font_sizes/font_size = 30
 text = "SAIR"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_0dh7x")
+volume_db = -15.0
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer2/Start-Button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer2/Exit-Button" to="." method="_on_exit_button_pressed"]
