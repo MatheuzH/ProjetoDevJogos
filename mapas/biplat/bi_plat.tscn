@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6l35ouwgsx2b"]
+
+[ext_resource type="Texture2D" uid="uid://bc8sf5hwxusp7" path="res://mapas/biplat/BiPlatImagem.png" id="1_n734o"]
+[ext_resource type="PackedScene" uid="uid://ci4alm8i3yvom" path="res://Personagens/personagem_teste.tscn" id="2_2mrsu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6p0m"]
+size = Vector2(576, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u32f7"]
+size = Vector2(578, 206)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mnhqt"]
+size = Vector2(116, 10)
+
+[node name="BiPlat" type="Node2D"]
+
+[node name="Mapa" type="Sprite2D" parent="."]
+position = Vector2(577, 324)
+texture = ExtResource("1_n734o")
+
+[node name="Chao" type="StaticBody2D" parent="."]
+position = Vector2(576, 524)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chao"]
+shape = SubResource("RectangleShape2D_f6p0m")
+
+[node name="Parede" type="StaticBody2D" parent="."]
+position = Vector2(576, 624)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parede"]
+position = Vector2(0, 13)
+shape = SubResource("RectangleShape2D_u32f7")
+
+[node name="PersonagemTeste" parent="." instance=ExtResource("2_2mrsu")]
+position = Vector2(574, 272)
+
+[node name="PlataformaEsquerda" type="StaticBody2D" parent="."]
+position = Vector2(418, 420)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaEsquerda"]
+shape = SubResource("RectangleShape2D_mnhqt")
+one_way_collision = true
+
+[node name="PlataformaDireita" type="StaticBody2D" parent="."]
+position = Vector2(737, 420)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaDireita"]
+shape = SubResource("RectangleShape2D_mnhqt")
+one_way_collision = true

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://g2avqw5i0jlv"]
+
+[ext_resource type="Texture2D" uid="uid://bmco86eaddqsr" path="res://mapas/flat/FlatImagem.png" id="1_y1wuh"]
+[ext_resource type="PackedScene" uid="uid://ci4alm8i3yvom" path="res://Personagens/personagem_teste.tscn" id="2_jx3o4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5aef0"]
+size = Vector2(576, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_db503"]
+size = Vector2(578, 206)
+
+[node name="Flat" type="Node2D"]
+
+[node name="Mapa" type="Sprite2D" parent="."]
+position = Vector2(576, 323)
+texture = ExtResource("1_y1wuh")
+
+[node name="Chao" type="StaticBody2D" parent="."]
+position = Vector2(576, 524)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chao"]
+shape = SubResource("RectangleShape2D_5aef0")
+
+[node name="Parede" type="StaticBody2D" parent="."]
+position = Vector2(576, 624)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parede"]
+position = Vector2(0, 13)
+shape = SubResource("RectangleShape2D_db503")
+
+[node name="PersonagemTeste" parent="." instance=ExtResource("2_jx3o4")]
+position = Vector2(574, 272)

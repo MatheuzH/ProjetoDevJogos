@@ -11,9 +11,20 @@ config_version=5
 [application]
 
 config/name="Arcane Automata"
-run/main_scene="res://tela_de_inicio.tscn"
+run/main_scene="res://Menus/tela_de_inicio.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[layer_names]
+
+2d_render/layer_1="Player"
+2d_render/layer_2="Paredes"
+2d_render/layer_3="Plataformas"
+2d_render/layer_4="Blastzone"
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Paredes"
+2d_physics/layer_3="Plataformas"
+2d_physics/layer_4="Blastzone"
 
 [rendering]
 

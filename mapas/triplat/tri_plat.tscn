@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://beeyi57itrchf"]
+
+[ext_resource type="Texture2D" uid="uid://bb7hccs85vvje" path="res://mapas/triplat/TriPlatImagem.png" id="1_xajg0"]
+[ext_resource type="PackedScene" uid="uid://ci4alm8i3yvom" path="res://Personagens/personagem_teste.tscn" id="2_pda7h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygnc5"]
+size = Vector2(576, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vlagf"]
+size = Vector2(578, 206)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2mog"]
+size = Vector2(100, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7htio"]
+size = Vector2(132, 10)
+
+[node name="TriPlat" type="Node2D"]
+
+[node name="Mapa" type="Sprite2D" parent="."]
+position = Vector2(576, 323)
+texture = ExtResource("1_xajg0")
+
+[node name="Chao" type="StaticBody2D" parent="."]
+position = Vector2(576, 524)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chao"]
+shape = SubResource("RectangleShape2D_ygnc5")
+
+[node name="Parede" type="StaticBody2D" parent="."]
+position = Vector2(576, 624)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parede"]
+position = Vector2(0, 13)
+shape = SubResource("RectangleShape2D_vlagf")
+
+[node name="PlataformaEsquerda" type="StaticBody2D" parent="."]
+position = Vector2(401, 419)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaEsquerda"]
+shape = SubResource("RectangleShape2D_c2mog")
+one_way_collision = true
+
+[node name="PlataformaCima" type="StaticBody2D" parent="."]
+position = Vector2(576, 346)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaCima"]
+shape = SubResource("RectangleShape2D_7htio")
+one_way_collision = true
+
+[node name="PlataformaDireita" type="StaticBody2D" parent="."]
+position = Vector2(752, 419)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaDireita"]
+shape = SubResource("RectangleShape2D_c2mog")
+one_way_collision = true
+
+[node name="PersonagemTeste" parent="." instance=ExtResource("2_pda7h")]
+position = Vector2(574, 272)

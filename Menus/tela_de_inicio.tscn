@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://2r8s6hqkbe64"]
 
-[ext_resource type="Texture2D" uid="uid://d32dj4yxpy326" path="res://WhatsApp Image 2024-09-04 at 18.52.07.jpeg" id="1_i1tf1"]
-[ext_resource type="Script" path="res://tela_de_inicio.gd" id="1_q42b5"]
-[ext_resource type="Texture2D" uid="uid://h2rlw17msm4q" path="res://DALL·E 2024-09-11 17.37.05 - A pixel art logo for a game titled 'Arcane Automata.' The theme combines robots and magic in a post-apocalyptic world. The font should have a futurist.webp" id="2_6ges6"]
-[ext_resource type="FontFile" uid="uid://byhrifwm2q08d" path="res://Vermin Vibes 1989.ttf" id="4_5kimp"]
+[ext_resource type="Script" path="res://Menus/tela_de_inicio.gd" id="1_mk5qd"]
+[ext_resource type="Texture2D" uid="uid://d32dj4yxpy326" path="res://Menus/WhatsApp Image 2024-09-04 at 18.52.07.jpeg" id="2_m3w7t"]
+[ext_resource type="Texture2D" uid="uid://h2rlw17msm4q" path="res://Menus/icone_do_jogo.webp" id="3_spwga"]
+[ext_resource type="FontFile" uid="uid://byhrifwm2q08d" path="res://Vermin Vibes 1989.ttf" id="4_sjhd5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_itkat"]
 
@@ -44,14 +44,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_q42b5")
+script = ExtResource("1_mk5qd")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 2
 offset_top = -249.0
 offset_right = 1153.0
 offset_bottom = 695.0
-texture = ExtResource("1_i1tf1")
+texture = ExtResource("2_m3w7t")
 expand_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -78,7 +78,7 @@ size_flags_stretch_ratio = 2.72
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
-texture = ExtResource("2_6ges6")
+texture = ExtResource("3_spwga")
 expand_mode = 4
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
@@ -91,7 +91,7 @@ custom_minimum_size = Vector2(350, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = SubResource("Theme_bjcdr")
-theme_override_fonts/font = ExtResource("4_5kimp")
+theme_override_fonts/font = ExtResource("4_sjhd5")
 theme_override_font_sizes/font_size = 30
 text = "JOGAR"
 
@@ -104,7 +104,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_xnqvx")
 custom_minimum_size = Vector2(350, 40)
 layout_mode = 2
 theme = SubResource("Theme_rxs1i")
-theme_override_fonts/font = ExtResource("4_5kimp")
+theme_override_fonts/font = ExtResource("4_sjhd5")
 theme_override_font_sizes/font_size = 30
 text = "SAIR"
 

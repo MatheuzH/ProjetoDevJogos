@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://4nb6dtkq44ar"]
+
+[ext_resource type="Texture2D" uid="uid://bs1xr4u31yqc" path="res://Personagens/IconesDePersonagem/MageIcon.png" id="1_dk0wk"]
+[ext_resource type="Texture2D" uid="uid://c025myjxrhubp" path="res://Personagens/IconesDePersonagem/BrawlerIcon.png" id="2_ewsky"]
+[ext_resource type="Texture2D" uid="uid://duvnqd2tdhhta" path="res://Personagens/IconesDePersonagem/SwordfighterIcon.png" id="3_frpjx"]
+[ext_resource type="Texture2D" uid="uid://dq6vlulryvylh" path="res://Personagens/IconesDePersonagem/RangerIcon.png" id="4_lcn3w"]
+
+[node name="EscolhaDePersonagem" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 325.0
+offset_top = 75.0
+offset_right = 775.0
+offset_bottom = 575.0
+
+[node name="ItemList" type="ItemList" parent="Control"]
+layout_mode = 0
+offset_right = 450.0
+offset_bottom = 500.0
+allow_reselect = true
+allow_search = false
+item_count = 4
+max_columns = 2
+same_column_width = true
+icon_mode = 0
+item_0/text = "Mage"
+item_0/icon = ExtResource("1_dk0wk")
+item_1/text = "Brawller"
+item_1/icon = ExtResource("2_ewsky")
+item_2/text = "Swordfighter"
+item_2/icon = ExtResource("3_frpjx")
+item_3/text = "Ranger"
+item_3/icon = ExtResource("4_lcn3w")
