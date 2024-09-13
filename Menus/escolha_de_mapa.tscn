@@ -1,4 +1,9 @@
-[gd_scene format=3 uid="uid://djt0hm4sfbjl1"]
+[gd_scene load_steps=5 format=3 uid="uid://djt0hm4sfbjl1"]
+
+[ext_resource type="Script" path="res://Menus/escolha_de_mapa.gd" id="1_1246a"]
+[ext_resource type="Texture2D" uid="uid://bxj7fh3pcgi21" path="res://mapas/flat/FlatIcone.png" id="1_y3s0q"]
+[ext_resource type="Texture2D" uid="uid://8d0hch4t8nor" path="res://mapas/biplat/BiplatIcone.png" id="2_6btis"]
+[ext_resource type="Texture2D" uid="uid://c6gdxx4ougto8" path="res://mapas/triplat/TriplatIcone.png" id="3_dynwb"]
 
 [node name="escolha_mapa" type="Control"]
 layout_mode = 3
@@ -7,36 +12,38 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1246a")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_bottom = 20
+[node name="ItemList" type="ItemList" parent="."]
+clip_contents = false
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_left = 618.0
+offset_top = 142.0
+offset_right = 1096.0
+offset_bottom = 304.0
+allow_search = false
+auto_height = true
+item_count = 3
+max_columns = 0
+fixed_column_width = 150
+icon_mode = 0
+item_0/text = "Flat"
+item_0/icon = ExtResource("1_y3s0q")
+item_1/text = "Biplat"
+item_1/icon = ExtResource("2_6btis")
+item_2/text = "Triplat"
+item_2/icon = ExtResource("3_dynwb")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer"]
+[node name="MapSelectorButton" type="Button" parent="."]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
+offset_left = 426.0
+offset_top = 528.0
+offset_right = 726.0
+offset_bottom = 628.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "mapa 1"
+text = "Select"
 
-[node name="Button2" type="Button" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-text = "mapa 2"
-
-[node name="Button3" type="Button" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-text = "mapa 3
-"
+[connection signal="pressed" from="MapSelectorButton" to="." method="_on_map_selector_button_pressed"]

@@ -15,6 +15,10 @@ run/main_scene="res://Menus/tela_de_inicio.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [layer_names]
 
 2d_render/layer_1="Player"
