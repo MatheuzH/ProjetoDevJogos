@@ -66,4 +66,4 @@ shape = SubResource("RectangleShape2D_c2mog")
 one_way_collision = true
 
 [node name="PersonagemTeste" parent="." instance=ExtResource("2_pda7h")]
-position = Vector2(574, 272)
+position = Vector2(576, 478)

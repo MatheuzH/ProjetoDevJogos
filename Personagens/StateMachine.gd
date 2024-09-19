@@ -37,3 +37,9 @@ func set_state(new_state):
  
 func add_state(state_name):
 	states[state_name] = states.size()
+	
+func state_includes(state_array):
+	for each_state in state_array:
+		if state == each_state:
+			return true
+	return false

@@ -11,6 +11,7 @@ func _ready():
 	add_state('WALK')
 	add_state('CROUCH')
 	add_state('AIR')
+	add_state('LANDING')
 	call_deferred("set_state", states.STAND)
 
 func state_logic(delta):
@@ -19,7 +20,11 @@ func state_logic(delta):
 
 func get_transition(delta):
 	parent.move_and_slide()
-	parent.states.text = str(state)
+	parent.states.text = states.find_key(state)
+	
+	if (parent.Chao_L.is_colliding() or parent.Chao_R.is_colliding()) and parent.velocity.y > 0:
+		return states.STAND
+	
 	match state:
 		states.STAND:
 			if Input.get_action_strength("right_%s" % id) == 1:
@@ -34,10 +39,13 @@ func get_transition(delta):
 				parent.turn(true)
 				return states.DASH
 				
-			if Input.is_action_pressed("jump_%s" % id):
+			if Input.is_action_just_pressed("jump_%s" % id):
 				parent.Frame()
 				return states.JUMP_SQUAT
-				
+			
+			if Input.is_action_pressed("down_%s" % id):
+				parent.Frame()
+				return states.CROUCH
 				
 			if parent.velocity.x > 0 and state == states.STAND:
 				parent.velocity.x += -parent.TRACTION*1
@@ -55,7 +63,7 @@ func get_transition(delta):
 					return states.SHORT_HOP
 			
 		states.SHORT_HOP:
-			parent.velocity.y = parent.JUMPFORCE
+			parent.velocity.y = parent.MIN_JUMPFORCE
 			return states.AIR
 			
 		states.FULL_HOP:
@@ -80,18 +88,61 @@ func get_transition(delta):
 		states.WALK:
 			pass
 		states.CROUCH:
-			pass
+			if not Input.is_action_pressed("down_%s" % 1):
+				parent.Frame()
+				return states.STAND
+				
+			if parent.velocity.x > 0 and state == states.STAND:
+				parent.velocity.x += -parent.TRACTION*1.2
+				parent.velocity.x = clamp(parent.velocity.x,0,parent.velocity.x)
+				
+			elif parent.velocity.x < 0 and state == states.STAND:
+				parent.velocity.x += parent.TRACTION*1.2
+				parent.velocity.x = clamp(parent.velocity.x,parent.velocity.x,0)
+				
+			if Input.is_action_pressed("jump_%s" % 1):
+				parent.in_fastfall = true
+				parent.Frame()
+				return states.AIR
+			
 		states.AIR:
-			pass
+			air_movement()
+		
+		states.LANDING:
+			landing()
 
-func enter_state(new_state, old_state):
-	pass
-
-func exit_state(old_state, new_state):
-	pass
-
-func state_includes(state_array):
-	for each_state in state_array:
-		if state == each_state:
-			return true
-	return false
+func air_movement():
+	#gravidade
+	if parent.velocity.y < parent.MAX_FALLSPEED:
+		parent.velocity.y = clamp(parent.velocity.y, parent.velocity.y + parent.GRAVITY, parent.MAX_FALLSPEED)
+	
+	
+		
+	if Input.is_action_pressed("down_%s" % 1):
+				parent.in_fastfall = true
+				
+	if not Input.is_action_pressed("down_%s" % 1):
+				parent.in_fastfall = false
+				
+	if parent.in_fastfall:
+		parent.velocity.y = parent.FASTFALL_SPEED
+		parent.set_collision_mask_value(2,false)
+	else:
+		parent.set_collision_mask_value(2,true)
+		
+	#movimento horizontal
+	if Input.is_action_pressed("left_%s" % 1) and parent.velocity.x > -parent.MAX_AIRSPEED:
+		parent.velocity.x -= parent.AIR_ACCEL
+		
+	elif Input.is_action_pressed("right_%s" % 1) and parent.velocity.x < parent.MAX_AIRSPEED:
+		parent.velocity.x += parent.AIR_ACCEL
+	
+	else:
+		if parent.velocity.x > 0:
+			parent.velocity.x -= parent.AIR_ACCEL/5
+			parent.velocity.x = clamp(parent.velocity.x,0,parent.velocity.x)
+	
+	
+	
+func landing():
+	return states.STAND
