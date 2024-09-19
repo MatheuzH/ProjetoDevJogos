@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://beeyi57itrchf"]
 
 [ext_resource type="Texture2D" uid="uid://bb7hccs85vvje" path="res://mapas/triplat/TriPlatImagem.png" id="1_xajg0"]
-[ext_resource type="PackedScene" uid="uid://ci4alm8i3yvom" path="res://Personagens/personagem_teste.tscn" id="2_pda7h"]
+[ext_resource type="PackedScene" uid="uid://ci4alm8i3yvom" path="res://Personagens/PersonagemTeste/personagem_teste.tscn" id="2_pda7h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ygnc5"]
 size = Vector2(576, 20)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://g2avqw5i0jlv"]
 
 [ext_resource type="Texture2D" uid="uid://bmco86eaddqsr" path="res://mapas/flat/FlatImagem.png" id="1_y1wuh"]
-[ext_resource type="PackedScene" uid="uid://ci4alm8i3yvom" path="res://Personagens/personagem_teste.tscn" id="2_jx3o4"]
+[ext_resource type="PackedScene" uid="uid://ci4alm8i3yvom" path="res://Personagens/PersonagemTeste/personagem_teste.tscn" id="2_jx3o4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5aef0"]
 size = Vector2(576, 20)
