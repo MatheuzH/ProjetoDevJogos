@@ -24,10 +24,13 @@ func get_transition(delta):
 	parent.states.text = states.find_key(state)
 	
 	if Landing():
+		print("landing")
+		parent.in_fastfall = false
 		parent.Frame()
 		return states.STAND
 	
 	if Falling():
+		parent.in_fastfall = false
 		parent.Frame()
 		return states.AIR
 	
@@ -124,27 +127,23 @@ func air_movement():
 	#gravidade
 	if parent.velocity.y < parent.MAX_FALLSPEED:
 		parent.velocity.y += parent.GRAVITY
-		parent.velocity.y = clamp(parent.velocity.y, parent.velocity.y, parent.MAX_FALLSPEED)
+		parent.velocity.y = min(parent.velocity.y, parent.MAX_FALLSPEED)
 	
 	
 		
 	if Input.is_action_just_pressed("down_%s" % 1):
-				parent.in_fastfall = true
-				
-	if not Input.is_action_pressed("down_%s" % 1):
-				parent.in_fastfall = false
-				
-	if parent.in_fastfall:
 		parent.velocity.y = parent.FASTFALL_SPEED
-		parent.set_collision_mask_value(2,false)
-		parent.Chao_L.set_collision_mask_value(2,false)
-		parent.Chao_R.set_collision_mask_value(2,false)
+		parent.in_fastfall = true
 		
-	else:
+	if not Input.is_action_pressed("down_%s" % 1):
 		parent.set_collision_mask_value(2,true)
 		parent.Chao_L.set_collision_mask_value(2,true)
 		parent.Chao_R.set_collision_mask_value(2,true)
 		
+	if parent.in_fastfall:
+		parent.set_collision_mask_value(2,false)
+		parent.Chao_L.set_collision_mask_value(2,false)
+		parent.Chao_R.set_collision_mask_value(2,false)
 		
 	#movimento horizontal
 	if Input.is_action_pressed("left_%s" % 1) and parent.velocity.x > -parent.MAX_AIRSPEED:
@@ -153,25 +152,27 @@ func air_movement():
 	elif Input.is_action_pressed("right_%s" % 1) and parent.velocity.x < parent.MAX_AIRSPEED:
 		parent.velocity.x += parent.AIR_ACCEL
 	
-	else:
+	elif not Input.is_action_pressed("left_%s" % 1) and not Input.is_action_pressed("right_%s" % 1):
 		if parent.velocity.x > 0:
 			parent.velocity.x -= parent.AIR_ACCEL/5
 			parent.velocity.x = clamp(parent.velocity.x,0,parent.velocity.x)
+		if parent.velocity.x < 0:
+			parent.velocity.x += parent.AIR_ACCEL/5
+			parent.velocity.x = clamp(parent.velocity.x,parent.velocity.x,0)
 	
 	
 	
 func Landing():
 	if state_includes([states.AIR]):
-		if parent.Chao_L.is_colliding() and parent.velocity.y >= 0:
+		if parent.Chao_L.is_colliding() and parent.velocity.y > 0:
 			var collider = parent.Chao_L.get_collider()
 			return true
-		elif parent.Chao_R.is_colliding() and parent.velocity.y >= 0:
+		elif parent.Chao_R.is_colliding() and parent.velocity.y > 0:
 			var collider = parent.Chao_R.get_collider()
 			return true
-			
+		else: 
+			return false
 func Falling():
-	if state_includes([states.STAND]):
+	if state_includes([states.STAND, states.DASH]):
 		if not parent.Chao_L.is_colliding() and not parent.Chao_R.is_colliding():
 			return true
-		else:
-			return false
