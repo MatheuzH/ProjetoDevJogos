@@ -46,6 +46,14 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Select"
 
+[node name="Button" type="Button" parent="."]
+offset_left = 12.0
+offset_top = 14.0
+offset_right = 143.0
+offset_bottom = 60.0
+text = "<----"
+
 [connection signal="item_clicked" from="ItemList" to="." method="_on_item_list_item_clicked"]
 [connection signal="item_selected" from="ItemList" to="." method="_on_item_list_item_selected"]
 [connection signal="pressed" from="MapSelectorButton" to="." method="_on_map_selector_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

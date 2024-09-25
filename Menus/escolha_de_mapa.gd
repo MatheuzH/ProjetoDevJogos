@@ -28,3 +28,7 @@ func _on_map_selector_button_pressed() -> void:
 		get_tree().change_scene_to_file(map_files[selected_index])
 	else:
 		print("Nenhum item foi selecionado ou o índice está fora do alcance.")
+
+
+func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Menus/tela_de_inicio.tscn")
