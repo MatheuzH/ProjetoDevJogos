@@ -18,10 +18,10 @@ script = ExtResource("1_1246a")
 clip_contents = false
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
-offset_left = 618.0
-offset_top = 142.0
-offset_right = 1096.0
-offset_bottom = 304.0
+offset_left = 340.0
+offset_top = 216.0
+offset_right = 818.0
+offset_bottom = 378.0
 allow_search = false
 auto_height = true
 item_count = 3
@@ -46,4 +46,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Select"
 
+[connection signal="item_clicked" from="ItemList" to="." method="_on_item_list_item_clicked"]
+[connection signal="item_selected" from="ItemList" to="." method="_on_item_list_item_selected"]
 [connection signal="pressed" from="MapSelectorButton" to="." method="_on_map_selector_button_pressed"]

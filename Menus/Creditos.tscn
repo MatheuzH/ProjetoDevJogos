@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://lbno22niswb1"]
+
+[node name="Creditos" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Jogo desenvolvido por: 
+Matheus Herzog 
+Lucas L
+Gabriel Martinez
+
+
+
+DIreitos reservados ao empresa ARCANE AUTOMATA Ltda
+
+copyright@"

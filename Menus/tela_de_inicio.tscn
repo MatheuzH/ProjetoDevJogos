@@ -101,6 +101,20 @@ custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_xnqvx")
 
+[node name="creditos-Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(350, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_bjcdr")
+theme_override_fonts/font = ExtResource("4_sjhd5")
+theme_override_font_sizes/font_size = 30
+text = "CREDITOS"
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_xnqvx")
+
 [node name="Exit-Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(350, 40)
 layout_mode = 2
@@ -109,10 +123,11 @@ theme_override_fonts/font = ExtResource("4_sjhd5")
 theme_override_font_sizes/font_size = 30
 text = "SAIR"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 stream = ExtResource("5_0dh7x")
 volume_db = -15.0
 autoplay = true
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer2/Start-Button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer2/creditos-Button" to="." method="_on_creditos_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer2/Exit-Button" to="." method="_on_exit_button_pressed"]
