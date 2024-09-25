@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6l35ouwgsx2b"]
+[gd_scene load_steps=7 format=3 uid="uid://c6l35ouwgsx2b"]
 
 [ext_resource type="Texture2D" uid="uid://bc8sf5hwxusp7" path="res://mapas/biplat/BiPlatImagem.png" id="1_n734o"]
+[ext_resource type="Texture2D" uid="uid://cn3m5mabthqv5" path="res://mapas/biplat/Imagens2.png" id="1_p8g45"]
 [ext_resource type="PackedScene" uid="uid://ci4alm8i3yvom" path="res://Personagens/PersonagemTeste/personagem_teste.tscn" id="2_2mrsu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f6p0m"]
@@ -13,6 +14,12 @@ size = Vector2(578, 206)
 size = Vector2(116, 10)
 
 [node name="BiPlat" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1155.0
+offset_bottom = 649.0
+texture = ExtResource("1_p8g45")
+expand_mode = 1
 
 [node name="Mapa" type="Sprite2D" parent="."]
 position = Vector2(577, 324)

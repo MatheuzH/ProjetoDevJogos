@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://beeyi57itrchf"]
+[gd_scene load_steps=8 format=3 uid="uid://beeyi57itrchf"]
 
+[ext_resource type="Texture2D" uid="uid://cc1bfwwf8jorp" path="res://mapas/triplat/Imagens1.png" id="1_dq3i8"]
 [ext_resource type="Texture2D" uid="uid://bb7hccs85vvje" path="res://mapas/triplat/TriPlatImagem.png" id="1_xajg0"]
 [ext_resource type="PackedScene" uid="uid://ci4alm8i3yvom" path="res://Personagens/PersonagemTeste/personagem_teste.tscn" id="2_pda7h"]
 
@@ -16,6 +17,12 @@ size = Vector2(100, 10)
 size = Vector2(132, 10)
 
 [node name="TriPlat" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1153.0
+offset_bottom = 647.0
+texture = ExtResource("1_dq3i8")
+expand_mode = 1
 
 [node name="Mapa" type="Sprite2D" parent="."]
 position = Vector2(576, 323)

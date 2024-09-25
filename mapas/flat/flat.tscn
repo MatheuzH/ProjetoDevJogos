@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://g2avqw5i0jlv"]
+[gd_scene load_steps=6 format=3 uid="uid://g2avqw5i0jlv"]
 
+[ext_resource type="Texture2D" uid="uid://cxocyn0l0squ2" path="res://mapas/flat/DALL·E 2024-09-25 14.33.19 - A pixel art 2D night-time scene set on the rooftop of a building in a post-apocalyptic, futuristic world. The rooftop shows signs of decay, with crack.webp" id="1_g0w78"]
 [ext_resource type="Texture2D" uid="uid://bmco86eaddqsr" path="res://mapas/flat/FlatImagem.png" id="1_y1wuh"]
 [ext_resource type="PackedScene" uid="uid://ci4alm8i3yvom" path="res://Personagens/PersonagemTeste/personagem_teste.tscn" id="2_jx3o4"]
 
@@ -7,9 +8,17 @@
 size = Vector2(576, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_db503"]
-size = Vector2(578, 206)
+size = Vector2(578, 110)
 
 [node name="Flat" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 2.0
+offset_top = -6.0
+offset_right = 1153.0
+offset_bottom = 652.0
+texture = ExtResource("1_g0w78")
+expand_mode = 1
 
 [node name="Mapa" type="Sprite2D" parent="."]
 position = Vector2(576, 323)
@@ -29,7 +38,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Parede"]
-position = Vector2(0, 13)
+position = Vector2(0, -35)
 shape = SubResource("RectangleShape2D_db503")
 
 [node name="PersonagemTeste" parent="." instance=ExtResource("2_jx3o4")]
