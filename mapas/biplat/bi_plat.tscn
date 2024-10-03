@@ -42,8 +42,13 @@ collision_mask = 0
 position = Vector2(0, 13)
 shape = SubResource("RectangleShape2D_u32f7")
 
-[node name="PersonagemTeste" parent="." instance=ExtResource("2_2mrsu")]
-position = Vector2(574, 272)
+[node name="Jogador1" parent="." instance=ExtResource("2_2mrsu")]
+position = Vector2(412, 472)
+ID = 1
+
+[node name="Jogador2" parent="." instance=ExtResource("2_2mrsu")]
+position = Vector2(685, 472)
+ID = 2
 
 [node name="PlataformaEsquerda" type="StaticBody2D" parent="."]
 position = Vector2(418, 420)

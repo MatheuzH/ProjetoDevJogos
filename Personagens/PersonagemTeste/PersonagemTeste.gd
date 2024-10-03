@@ -30,6 +30,7 @@ var landing_lag = 0
 
 
 @onready var states = $State
+@onready var jogador = $Jogador
 @onready var Chao_L:RayCast2D = get_node("Chao_L")
 @onready var Chao_R:RayCast2D = get_node("Chao_R")
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://ci4alm8i3yvom"]
+[gd_scene load_steps=14 format=3 uid="uid://ci4alm8i3yvom"]
 
 [ext_resource type="Script" path="res://Personagens/PersonagemTeste/PersonagemTeste.gd" id="1_twqo1"]
+[ext_resource type="Script" path="res://Personagens/PersonagemTeste/characterHelper.gd" id="1_uapko"]
 [ext_resource type="Script" path="res://Personagens/PersonagemTeste/StateMachinteTeste.gd" id="2_6di3y"]
 [ext_resource type="Texture2D" uid="uid://bnv7871y7w2jk" path="res://Personagens/PersonagemTeste/sprites/idle_strip5.png" id="3_svg1r"]
 
@@ -66,9 +67,10 @@ _data = {
 }
 
 [node name="PersonagemTeste" type="Node2D"]
+script = ExtResource("1_uapko")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-collision_mask = 15
+collision_mask = 14
 motion_mode = 1
 script = ExtResource("1_twqo1")
 
@@ -88,22 +90,30 @@ libraries = {
 }
 
 [node name="Frames" type="Label" parent="CharacterBody2D"]
-visible = false
-offset_left = -20.0
-offset_top = -89.0
-offset_right = 20.0
-offset_bottom = -66.0
+offset_left = 25.0
+offset_top = -79.0
+offset_right = 65.0
+offset_bottom = -56.0
 text = "69
 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Jogador" type="Label" parent="CharacterBody2D"]
+offset_left = -21.0
+offset_top = -56.0
+offset_right = 19.0
+offset_bottom = -33.0
+text = "J0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="State" type="Label" parent="CharacterBody2D"]
-visible = false
-offset_left = -32.0
-offset_top = -60.0
-offset_right = 32.0
-offset_bottom = -37.0
+offset_left = -33.0
+offset_top = -79.0
+offset_right = 31.0
+offset_bottom = -56.0
 text = "teste"
 horizontal_alignment = 1
 vertical_alignment = 1

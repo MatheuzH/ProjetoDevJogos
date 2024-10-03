@@ -1,5 +1,5 @@
 extends StateMachine
-@export var id = 1
+@export var id:int
 
 func _ready():
 	add_state('STAND')
@@ -22,6 +22,8 @@ func state_logic(delta):
 
 func get_transition(delta):
 	parent.states.text = states.find_key(state) #mostra estado atual do personagem
+	
+	parent.jogador.text = "J" + str(id)
 	
 	if parent.position.y > 500:  #impede o personagem de sumir se cair
 		parent.position.y = -500
@@ -148,7 +150,7 @@ func get_transition(delta):
 		states.WALK:
 			pass
 		states.CROUCH: #personagem agachado
-			if not Input.is_action_pressed("down_%s" % 1):
+			if not Input.is_action_pressed("down_%s" % id):
 				parent.Frame()
 				return states.STAND
 				
@@ -160,7 +162,7 @@ func get_transition(delta):
 				parent.velocity.x += parent.TRACTION*1.2
 				parent.velocity.x = clamp(parent.velocity.x,parent.velocity.x,0)
 				
-			if Input.is_action_pressed("jump_%s" % 1):
+			if Input.is_action_pressed("jump_%s" % id):
 				parent.in_fastfall = true
 				parent.set_all_collision_mask_value(3,false)
 				parent.Frame()
@@ -210,13 +212,13 @@ func air_movement():
 		
 		
 	#movimento horizontal
-	if Input.is_action_pressed("left_%s" % 1) and parent.velocity.x > -parent.MAX_AIRSPEED:
+	if Input.is_action_pressed("left_%s" % id) and parent.velocity.x > -parent.MAX_AIRSPEED:
 		parent.velocity.x -= parent.AIR_ACCEL
 		
-	elif Input.is_action_pressed("right_%s" % 1) and parent.velocity.x < parent.MAX_AIRSPEED:
+	elif Input.is_action_pressed("right_%s" % id) and parent.velocity.x < parent.MAX_AIRSPEED:
 		parent.velocity.x += parent.AIR_ACCEL
 	
-	elif not Input.is_action_pressed("left_%s" % 1) and not Input.is_action_pressed("right_%s" % 1):
+	elif not Input.is_action_pressed("left_%s" % id) and not Input.is_action_pressed("right_%s" % id):
 		if parent.velocity.x > 0:
 			parent.velocity.x -= parent.AIR_ACCEL/5
 			parent.velocity.x = clamp(parent.velocity.x,0,parent.velocity.x)
