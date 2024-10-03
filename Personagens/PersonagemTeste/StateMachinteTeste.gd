@@ -21,7 +21,7 @@ func state_logic(delta):
 	parent._physics_process(delta)
 
 func get_transition(delta):
-	#parent.states.text = states.find_key(state) #mostra estado atual do personagem
+	parent.states.text = states.find_key(state) #mostra estado atual do personagem
 	
 	if parent.position.y > 500:  #impede o personagem de sumir se cair
 		parent.position.y = -500
@@ -87,10 +87,12 @@ func get_transition(delta):
 		states.DASH: #boost inicial de velocidade
 			if Input.is_action_just_pressed("left_%s" % id):
 				if parent.velocity.x > 0:
+					parent.turn(true)
 					parent.Frame()
 				parent.velocity.x = -parent.DASHSPEED
 			elif Input.is_action_just_pressed("right_%s" % id):
 				if parent.velocity.x < 0:
+					parent.turn(false)
 					parent.Frame()
 				parent.velocity.x = parent.DASHSPEED
 			else:
@@ -135,7 +137,7 @@ func get_transition(delta):
 				if Input.is_action_just_pressed("right_%s" % id):
 					parent.velocity.x = parent.DASHSPEED
 					parent.Frame()
-					parent.turn(true)
+					parent.turn(false)
 					return states.DASH
 				
 			if not Input.is_action_pressed("right_%s" % id) and not Input.is_action_pressed("left_%s" % id):

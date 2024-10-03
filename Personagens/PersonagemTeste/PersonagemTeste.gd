@@ -46,7 +46,7 @@ func turn(direction):
 		dir = -1
 	else:
 		dir = 1
-	$Sprite.set_flip_h(direction)
+	$AnimatedSprite2D.set_flip_h(direction)
 
 func Frame():
 	frame = 0
@@ -54,7 +54,7 @@ func Frame():
 
 
 func _physics_process(delta: float) -> void:
-	#$Frames.text = str(frame) #mostra quantos frames passaram desde a ultima troca de estado
+	$Frames.text = str(frame) #mostra quantos frames passaram desde a ultima troca de estado
 	pass
 	
 func set_all_collision_mask_value(layer:int, value:bool):

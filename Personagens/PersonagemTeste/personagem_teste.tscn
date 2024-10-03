@@ -1,11 +1,69 @@
-[gd_scene load_steps=5 format=3 uid="uid://ci4alm8i3yvom"]
+[gd_scene load_steps=13 format=3 uid="uid://ci4alm8i3yvom"]
 
 [ext_resource type="Script" path="res://Personagens/PersonagemTeste/PersonagemTeste.gd" id="1_twqo1"]
 [ext_resource type="Script" path="res://Personagens/PersonagemTeste/StateMachinteTeste.gd" id="2_6di3y"]
-[ext_resource type="Texture2D" uid="uid://cm6n36enjqj2w" path="res://icon.svg" id="2_p36k1"]
+[ext_resource type="Texture2D" uid="uid://bnv7871y7w2jk" path="res://Personagens/PersonagemTeste/sprites/idle_strip5.png" id="3_svg1r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cbsq6"]
-size = Vector2(64, 64)
+size = Vector2(48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vp46p"]
+atlas = ExtResource("3_svg1r")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2m2a"]
+atlas = ExtResource("3_svg1r")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4wlp"]
+atlas = ExtResource("3_svg1r")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30lu2"]
+atlas = ExtResource("3_svg1r")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7i44e"]
+atlas = ExtResource("3_svg1r")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dr34b"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vp46p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2m2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4wlp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30lu2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7i44e")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_gi5yi"]
+resource_name = "stand"
+loop_mode = 1
+step = 0.0166667
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5625y"]
+_data = {
+"stand": SubResource("Animation_gi5yi")
+}
 
 [node name="PersonagemTeste" type="Node2D"]
 
@@ -20,11 +78,17 @@ script = ExtResource("2_6di3y")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("RectangleShape2D_cbsq6")
 
-[node name="Sprite" type="Sprite2D" parent="CharacterBody2D"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_p36k1")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_dr34b")
+animation = &"stand"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D/AnimatedSprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_5625y")
+}
 
 [node name="Frames" type="Label" parent="CharacterBody2D"]
+visible = false
 offset_left = -20.0
 offset_top = -89.0
 offset_right = 20.0
@@ -35,6 +99,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="State" type="Label" parent="CharacterBody2D"]
+visible = false
 offset_left = -32.0
 offset_top = -60.0
 offset_right = 32.0
@@ -44,12 +109,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Chao_L" type="RayCast2D" parent="CharacterBody2D"]
-position = Vector2(-32, 22)
+position = Vector2(-24, 22)
 target_position = Vector2(0, 11)
 collision_mask = 7
 
 [node name="Chao_R" type="RayCast2D" parent="CharacterBody2D"]
-position = Vector2(32, 22)
+position = Vector2(24, 22)
 target_position = Vector2(0, 11)
 collision_mask = 7
 
