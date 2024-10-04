@@ -43,14 +43,26 @@ func get_transition(delta):
 	
 	match state: #coracao da maquina de estados
 		states.STAND: #parado
+			if Input.is_action_pressed("modfier_%s" % id) and Input.is_action_just_pressed("right_%s" % id):
+				parent.velocity.x = parent.WALK_SPEED
+				parent.Frame()
+				parent.turn(false)
+				return states.WALK
+				
+			if Input.is_action_pressed("modfier_%s" % id) and Input.is_action_just_pressed("left_%s" % id):
+				parent.velocity.x = -parent.WALK_SPEED
+				parent.Frame()
+				parent.turn(true)
+				return states.WALK
+				
 			if Input.is_action_just_pressed("right_%s" % id):
-				parent.velocity.x = parent.DASHSPEED
+				parent.velocity.x = parent.DASH_SPEED
 				parent.Frame()
 				parent.turn(false)
 				return states.DASH
 				
 			if Input.is_action_just_pressed("left_%s" % id):
-				parent.velocity.x = -parent.DASHSPEED
+				parent.velocity.x = -parent.DASH_SPEED
 				parent.Frame()
 				parent.turn(true)
 				return states.DASH
@@ -91,12 +103,12 @@ func get_transition(delta):
 				if parent.velocity.x > 0:
 					parent.turn(true)
 					parent.Frame()
-				parent.velocity.x = -parent.DASHSPEED
+				parent.velocity.x = -parent.DASH_SPEED
 			elif Input.is_action_just_pressed("right_%s" % id):
 				if parent.velocity.x < 0:
 					parent.turn(false)
 					parent.Frame()
-				parent.velocity.x = parent.DASHSPEED
+				parent.velocity.x = parent.DASH_SPEED
 			else:
 				if parent.frame >= parent.dash_duration-1:
 					parent.Frame()
@@ -111,6 +123,7 @@ func get_transition(delta):
 					return states.AIR
 				else:
 					return states.JUMP_SQUAT
+		
 		states.RUNNING: #personagem correndo
 			if Input.is_action_just_pressed("jump_%s" % id):
 				parent.Frame()
@@ -123,21 +136,40 @@ func get_transition(delta):
 					return states.JUMP_SQUAT
 					
 			if parent.velocity.x > 0: #indo para direita
+				parent.turn(false)
 				if Input.is_action_pressed("right_%s" % id):
-					parent.velocity.x = parent.RUN_SPEED
+					if Input.is_action_pressed("modfier_%s" % id):
+						parent.Frame()
+						parent.velocity.x = parent.WALK_SPEED
+						return states.WALK
+					else:
+						parent.velocity.x = parent.RUN_SPEED
 					
 				if Input.is_action_just_pressed("left_%s" % id):
-					parent.velocity.x = -parent.DASHSPEED
+					if Input.is_action_pressed("modfier_%s" % id):
+						parent.Frame()
+						parent.velocity.x = -parent.WALK_SPEED
+						return states.WALK
+					parent.velocity.x = -parent.DASH_SPEED
 					parent.Frame()
 					parent.turn(true)
 					return states.DASH
 					
 			if parent.velocity.x < 0: #indo para esquerda
+				parent.turn(true)
 				if Input.is_action_pressed("left_%s" % id):
+					if Input.is_action_pressed("modfier_%s" % id):
+						parent.Frame()
+						parent.velocity.x = -parent.WALK_SPEED
+						return states.WALK
 					parent.velocity.x = -parent.RUN_SPEED
 					
 				if Input.is_action_just_pressed("right_%s" % id):
-					parent.velocity.x = parent.DASHSPEED
+					if Input.is_action_pressed("modfier_%s" % id):
+						parent.Frame()
+						parent.velocity.x = parent.WALK_SPEED
+						return states.WALK
+					parent.velocity.x = parent.DASH_SPEED
 					parent.Frame()
 					parent.turn(false)
 					return states.DASH
@@ -147,8 +179,59 @@ func get_transition(delta):
 			
 		states.MOONWALK:
 			pass
-		states.WALK:
-			pass
+		states.WALK: #personagem andando
+			if Input.is_action_just_pressed("jump_%s" % id):
+				parent.Frame()
+				if Input.is_action_pressed("down_%s" % id):
+					parent.in_fastfall = true
+					parent.set_all_collision_mask_value(3,false)
+					parent.velocity.y = parent.FASTFALL_SPEED
+					return states.AIR
+				else:
+					return states.JUMP_SQUAT
+					
+			if parent.velocity.x > 0: #indo para direita
+				parent.turn(false)
+				if Input.is_action_pressed("right_%s" % id):
+					if not Input.is_action_pressed("modfier_%s" % id):
+						parent.velocity.x = parent.RUN_SPEED
+						parent.Frame()
+						return states.RUNNING
+					else:
+						parent.velocity.x = parent.WALK_SPEED
+					
+				if Input.is_action_just_pressed("left_%s" % id):
+					if not Input.is_action_pressed("modfier_%s" % id):
+						parent.velocity.x = -parent.DASH_SPEED
+						parent.Frame()
+						parent.turn(true)
+						return states.DASH
+					else:
+						parent.velocity.x = -parent.WALK_SPEED
+					
+			if parent.velocity.x < 0: #indo para esquerda
+				parent.turn(true)
+				if Input.is_action_pressed("left_%s" % id):
+					if not Input.is_action_pressed("modfier_%s" % id):
+						parent.velocity.x = -parent.RUN_SPEED
+						parent.Frame()
+						parent.turn(true)
+						return states.RUNNING
+					else:
+						parent.velocity.x = -parent.WALK_SPEED
+					
+				if Input.is_action_just_pressed("right_%s" % id):
+					if not Input.is_action_pressed("modfier_%s" % id):
+						parent.velocity.x = parent.DASH_SPEED
+						parent.Frame()
+						parent.turn(false)
+						return states.DASH
+					else:
+						parent.velocity.x = parent.WALK_SPEED
+				
+			if not Input.is_action_pressed("right_%s" % id) and not Input.is_action_pressed("left_%s" % id):
+				return states.STAND
+			
 		states.CROUCH: #personagem agachado
 			if not Input.is_action_pressed("down_%s" % id):
 				parent.Frame()
@@ -196,14 +279,14 @@ func air_movement():
 	
 	
 		
-	if Input.is_action_just_pressed("down_%s" % 1):
+	if Input.is_action_just_pressed("down_%s" % id):
 		parent.velocity.y = parent.FASTFALL_SPEED
 		parent.in_fastfall = true
 		parent.set_collision_mask_value(3,false)
 		parent.Chao_L.set_collision_mask_value(3,false)
 		parent.Chao_R.set_collision_mask_value(3,false)
 		
-	if not Input.is_action_pressed("down_%s" % 1):
+	if not Input.is_action_pressed("down_%s" % id):
 		parent.set_collision_mask_value(3,true)
 		parent.Chao_L.set_collision_mask_value(3,true)
 		parent.Chao_R.set_collision_mask_value(3,true)

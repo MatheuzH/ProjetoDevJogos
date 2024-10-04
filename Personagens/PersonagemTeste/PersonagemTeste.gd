@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 #ground movement
 const RUN_SPEED = 350
-const DASHSPEED = 450
-const WALKSPEED = 100
+const DASH_SPEED = 450
+const WALK_SPEED = 100
 const dash_duration = 10
 const TRACTION = 30
 const ROLL_DISTANCE = 350
