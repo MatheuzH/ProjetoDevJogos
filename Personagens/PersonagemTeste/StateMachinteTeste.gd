@@ -13,7 +13,8 @@ func _ready():
 	add_state('CROUCH')
 	add_state('AIR')
 	add_state('LANDING')
-	call_deferred("set_state", states.AIR)
+	add_state('GROUND_ATTACK')
+	call_deferred("set_state", states.STAND)
 	
 
 func state_logic(delta):
@@ -40,6 +41,10 @@ func get_transition(delta):
 		parent.in_fastfall = false
 		parent.Frame()
 		return states.AIR
+	
+	if Input.is_action_just_pressed("attack" % id) && TILT() == true:
+		parent.frame()
+		return states.GROUND_ATTACK
 	
 	match state: #coracao da maquina de estados
 		states.STAND: #parado
@@ -270,6 +275,11 @@ func get_transition(delta):
 					return states.RUNNING
 					
 				return states.STAND
+
+
+func TILT():
+	if state_includes([states.STAND,states.MOONWALK,states.DASH,states.RUN,states.WALK,states.CROUCH]):
+		return true
 
 func air_movement():
 	#gravidade

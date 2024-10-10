@@ -6,7 +6,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$CharacterBody2D/StateMachine.id = ID
+	$Player/StateMachine.id = ID
 	pass # Replace with function body.
 
 
