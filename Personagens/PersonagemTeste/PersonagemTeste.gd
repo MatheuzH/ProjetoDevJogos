@@ -36,17 +36,17 @@ var selfState
 @onready var jogador = $Jogador
 @onready var Chao_L:RayCast2D = get_node("Chao_L")
 @onready var Chao_R:RayCast2D = get_node("Chao_R")
-@onready var Ledge_Grab_F = get_node("Raycasts/Ledge_Grab_F")
-@onready var Ledge_Grab_B = get_node("Raycasts/Ledge_Grab_B")
+@onready var Ledge_Grab_F = get_node("Wall_Cling_F")
+@onready var Ledge_Grab_B = get_node("Wall_Cling_B")
 
 var in_fastfall = false
 var frame = 0
 
 func create_hitbox(width, height, damage, angle, base_kb, kb_scaling, duration, type, points, angle_flipper,hitlag=1):
-	var hitbox_instance = hitbox.instance()
+	var hitbox_instance = hitbox.instantiate()
 	self.add_child(hitbox_instance)
 	if direction() == 1:
-		hitbox_instance.set_parameters(width,height, damage,-angle+180,base_kb, kb_scaling, duration,type,points,angle_flipper,hitlag)
+		hitbox_instance.set_parameters(width,height, damage,angle,base_kb, kb_scaling, duration,type,points,angle_flipper,hitlag)
 	else:
 		var flip_x_points = Vector2(-points.x, points.y)
 		hitbox_instance.set_parameters(width,height, damage,-angle+180,base_kb, kb_scaling, duration,type,flip_x_points,angle_flipper,hitlag)
@@ -58,7 +58,7 @@ func updateframes(delta):
 	frame += 1
 
 func direction():
-	if Ledge_Grab_F.get_cast_to().x > 0: 
+	if $AnimatedSprite2D.flip_h == false: 
 		return 1
 	else: 
 		return -1

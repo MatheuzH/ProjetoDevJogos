@@ -42,8 +42,8 @@ func get_transition(delta):
 		parent.Frame()
 		return states.AIR
 	
-	if Input.is_action_just_pressed("attack" % id) && TILT() == true:
-		parent.frame()
+	if Input.is_action_just_pressed("attack_%s" % id) && TILT() == true:
+		parent.Frame()
 		return states.GROUND_ATTACK
 	
 	match state: #coracao da maquina de estados
@@ -276,9 +276,15 @@ func get_transition(delta):
 					
 				return states.STAND
 
-
+		states.GROUND_ATTACK:
+			if parent.frame == 0:
+				parent.DOWN_TILT()
+			if parent.DOWN_TILT() == true:
+				parent.Frame()
+				return states.STAND
+			
 func TILT():
-	if state_includes([states.STAND,states.MOONWALK,states.DASH,states.RUN,states.WALK,states.CROUCH]):
+	if state_includes([states.STAND,states.MOONWALK,states.DASH,states.RUNNING,states.WALK,states.CROUCH]):
 		return true
 
 func air_movement():
