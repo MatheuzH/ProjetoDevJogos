@@ -32,6 +32,7 @@ var landing_lag = 0
 @export var hitbox: PackedScene
 var selfState
 
+@onready var animation := $AnimatedSprite2D
 @onready var states = $State
 @onready var jogador = $Jogador
 @onready var Chao_L:RayCast2D = get_node("Chao_L")
@@ -88,5 +89,7 @@ func set_all_collision_mask_value(layer:int, value:bool):
 func DOWN_TILT():
 	if frame == 5:
 		create_hitbox(40,20,8,90,3,120,3,'normal',Vector2(64,32),0,1)
-	if frame >=10:
+		animation.play("down_tilt")
+	if frame >=21:
+		animation.play("stand")
 		return true 

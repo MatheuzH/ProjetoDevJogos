@@ -278,6 +278,7 @@ func get_transition(delta):
 
 		states.GROUND_ATTACK:
 			if parent.frame == 0:
+				parent.play_animation("down_tilt")
 				parent.DOWN_TILT()
 			if parent.DOWN_TILT() == true:
 				parent.Frame()
