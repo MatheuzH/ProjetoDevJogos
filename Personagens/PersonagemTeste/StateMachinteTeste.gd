@@ -24,7 +24,7 @@ func state_logic(delta):
 func get_transition(delta):
 	parent.states.text = states.find_key(state) #mostra estado atual do personagem
 	
-	parent.jogador.text = "J" + str(id)
+	parent.jogador.text = "J" + str(id) #mostra o jogador que controla o personagem
 	
 	if parent.position.y > 500:  #impede o personagem de sumir se cair
 		parent.position.y = -500
@@ -48,18 +48,6 @@ func get_transition(delta):
 	
 	match state: #coracao da maquina de estados
 		states.STAND: #parado
-			if Input.is_action_pressed("modfier_%s" % id) and Input.is_action_just_pressed("right_%s" % id):
-				parent.velocity.x = parent.WALK_SPEED
-				parent.Frame()
-				parent.turn(false)
-				return states.WALK
-				
-			if Input.is_action_pressed("modfier_%s" % id) and Input.is_action_just_pressed("left_%s" % id):
-				parent.velocity.x = -parent.WALK_SPEED
-				parent.Frame()
-				parent.turn(true)
-				return states.WALK
-				
 			if Input.is_action_just_pressed("right_%s" % id):
 				parent.velocity.x = parent.DASH_SPEED
 				parent.Frame()
@@ -71,6 +59,19 @@ func get_transition(delta):
 				parent.Frame()
 				parent.turn(true)
 				return states.DASH
+				
+			if Input.is_action_pressed("right_%s" % id) or Input.is_action_pressed("modfier_%s" % id) and Input.is_action_just_pressed("right_%s" % id):
+				parent.velocity.x = parent.WALK_SPEED
+				parent.Frame()
+				parent.turn(false)
+				return states.WALK
+				
+			if Input.is_action_pressed("left_%s" % id) or Input.is_action_pressed("modfier_%s" % id) and Input.is_action_just_pressed("left_%s" % id):
+				parent.velocity.x = -parent.WALK_SPEED
+				parent.Frame()
+				parent.turn(true)
+				return states.WALK
+				
 				
 			if Input.is_action_just_pressed("jump_%s" % id):
 				parent.Frame()
@@ -284,9 +285,34 @@ func get_transition(delta):
 				parent.Frame()
 				return states.STAND
 			
+	return null
 func TILT():
 	if state_includes([states.STAND,states.MOONWALK,states.DASH,states.RUNNING,states.WALK,states.CROUCH]):
 		return true
+ 
+func enter_state(new_state, old_state):
+	match new_state:
+		states.STAND:
+			parent.play_animation('stand')
+		states.CROUCH:
+			parent.play_animation('crouch')
+		states.JUMP_SQUAT:
+			parent.play_animation('jump_squat')
+		states.SHORT_HOP:
+			parent.play_animation('air')
+		states.FULL_HOP:
+			parent.play_animation('air')
+		states.AIR:
+			parent.play_animation('air')
+		states.DASH:
+			parent.play_animation('dash')
+		states.RUNNING:
+			parent.play_animation('run')
+ 
+func exit_state(old_state, new_state):
+	match old_state:
+		states.CROUCH:
+			parent.play_animation('uncrouch')
 
 func air_movement():
 	#gravidade

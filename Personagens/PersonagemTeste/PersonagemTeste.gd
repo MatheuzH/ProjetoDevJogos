@@ -39,6 +39,7 @@ var selfState
 @onready var Chao_R:RayCast2D = get_node("Chao_R")
 @onready var Ledge_Grab_F = get_node("Wall_Cling_F")
 @onready var Ledge_Grab_B = get_node("Wall_Cling_B")
+@onready var anim = $AnimatedSprite2D/AnimationPlayer
 
 var in_fastfall = false
 var frame = 0
@@ -73,6 +74,9 @@ func turn(direction):
 		dir = 1
 	$AnimatedSprite2D.set_flip_h(direction)
 
+func play_animation(animation_name):
+	anim.play(animation_name)
+
 func Frame():
 	frame = 0
 
@@ -89,7 +93,5 @@ func set_all_collision_mask_value(layer:int, value:bool):
 func DOWN_TILT():
 	if frame == 5:
 		create_hitbox(40,20,8,90,3,120,3,'normal',Vector2(64,32),0,1)
-		animation.play("down_tilt")
 	if frame >=21:
-		animation.play("stand")
 		return true 
