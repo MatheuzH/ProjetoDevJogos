@@ -95,3 +95,4 @@ func DOWN_TILT():
 		create_hitbox(40,20,8,90,3,120,3,'normal',Vector2(64,32),0,1)
 	if frame >=21:
 		return true 
+	return false

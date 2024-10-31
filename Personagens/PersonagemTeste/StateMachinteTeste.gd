@@ -1,5 +1,5 @@
 extends StateMachine
-@export var id:int
+@export var id:int = 1
 
 func _ready():
 	add_state('STAND')
@@ -14,6 +14,7 @@ func _ready():
 	add_state('AIR')
 	add_state('LANDING')
 	add_state('GROUND_ATTACK')
+	add_state('DOWN_TILT')
 	call_deferred("set_state", states.STAND)
 	
 
@@ -278,13 +279,14 @@ func get_transition(delta):
 				return states.STAND
 
 		states.GROUND_ATTACK:
-			if parent.frame == 0:
-				parent.play_animation("down_tilt")
-				parent.DOWN_TILT()
+			parent.Frame()
+			parent.DOWN_TILT()
+			return states.DOWN_TILT
+		states.DOWN_TILT:
+			parent.velocity.x *= 0.8
 			if parent.DOWN_TILT() == true:
 				parent.Frame()
 				return states.STAND
-			
 	return null
 func TILT():
 	if state_includes([states.STAND,states.MOONWALK,states.DASH,states.RUNNING,states.WALK,states.CROUCH]):
@@ -308,6 +310,8 @@ func enter_state(new_state, old_state):
 			parent.play_animation('dash')
 		states.RUNNING:
 			parent.play_animation('run')
+		states.DOWN_TILT:
+			parent.play_animation("down_tilt")
  
 func exit_state(old_state, new_state):
 	match old_state:
