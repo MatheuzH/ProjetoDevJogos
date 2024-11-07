@@ -69,14 +69,10 @@ func direction():
 
 
 func turn(direction):
-	var dir = 0
-	if direction:
-		dir = -1
-	else:
-		dir = 1
 	$AnimatedSprite2D.set_flip_h(direction)
 
 func play_animation(animation_name):
+	anim.stop(true)
 	anim.play(animation_name)
 
 func Frame():
@@ -91,10 +87,49 @@ func set_all_collision_mask_value(layer:int, value:bool):
 	Chao_L.set_collision_mask_value(layer,value)
 	Chao_R.set_collision_mask_value(layer,value)
 	
-#Tilt Attacks 
+	
+	
+#Air Attacks:
+func UP_AIR():
+	if frame > 14:
+		return true
+		
+func FOWARD_AIR():
+	if frame > 19:
+		return true
+		
+func BACK_AIR():
+	if frame > 27:
+		return true
+		
+func DOWN_AIR():
+	if frame > 25:
+		return true
+	
+func NEUTRAL_AIR():
+	if frame > 30:
+		return true
+		
+#Ground Attacks 
+func UP_TILT():
+	if frame >=12:
+		return true
+
+func FOWARD_TILT():
+	if frame < 15:
+		velocity.x = 300 * direction()
+	if frame > 10:
+		velocity.x *= 0.8
+	if frame >= 26:
+		return true
+
 func DOWN_TILT():
 	if frame == 5:
 		create_hitbox(40,20,8,90,3,120,30,'normal',Vector2(64,32),0,1)
 	if frame >=21:
 		return true 
 	return false
+
+func FOWARD_STRONG():
+	if frame >= 41:
+		return true
