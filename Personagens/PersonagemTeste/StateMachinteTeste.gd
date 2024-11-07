@@ -1,6 +1,6 @@
 extends StateMachine
-@export var id:int = 1
-
+@onready var id:int = parent.id
+ 
 func _ready():
 	add_state('STAND')
 	add_state('JUMP_SQUAT')
@@ -27,8 +27,8 @@ func get_transition(delta):
 	
 	parent.jogador.text = "J" + str(id) #mostra o jogador que controla o personagem
 	
-	if parent.position.y > 500:  #impede o personagem de sumir se cair
-		parent.position.y = -500
+	if parent.position.y > 700:  #impede o personagem de sumir se cair
+		parent.position.y = -100
 	
 	if Landing(): #detecta se o personagem esta aterrizando independente de estado
 		parent.in_fastfall = false
@@ -49,18 +49,6 @@ func get_transition(delta):
 	
 	match state: #coracao da maquina de estados
 		states.STAND: #parado
-			if Input.is_action_just_pressed("right_%s" % id):
-				parent.velocity.x = parent.DASH_SPEED
-				parent.Frame()
-				parent.turn(false)
-				return states.DASH
-				
-			if Input.is_action_just_pressed("left_%s" % id):
-				parent.velocity.x = -parent.DASH_SPEED
-				parent.Frame()
-				parent.turn(true)
-				return states.DASH
-				
 			if Input.is_action_pressed("right_%s" % id) or Input.is_action_pressed("modfier_%s" % id) and Input.is_action_just_pressed("right_%s" % id):
 				parent.velocity.x = parent.WALK_SPEED
 				parent.Frame()
@@ -72,6 +60,19 @@ func get_transition(delta):
 				parent.Frame()
 				parent.turn(true)
 				return states.WALK
+				
+			if Input.is_action_just_pressed("right_%s" % id):
+				parent.velocity.x = parent.DASH_SPEED
+				parent.Frame()
+				parent.turn(false)
+				return states.DASH
+				
+			if Input.is_action_just_pressed("left_%s" % id):
+				parent.velocity.x = -parent.DASH_SPEED
+				parent.Frame()
+				parent.turn(true)
+				return states.DASH
+			
 				
 				
 			if Input.is_action_just_pressed("jump_%s" % id):
@@ -282,11 +283,16 @@ func get_transition(delta):
 			parent.Frame()
 			parent.DOWN_TILT()
 			return states.DOWN_TILT
+			
 		states.DOWN_TILT:
 			parent.velocity.x *= 0.8
+			if parent.frame == 0:
+				parent.DOWN_TILT()
 			if parent.DOWN_TILT() == true:
 				parent.Frame()
 				return states.STAND
+				
+				
 	return null
 func TILT():
 	if state_includes([states.STAND,states.MOONWALK,states.DASH,states.RUNNING,states.WALK,states.CROUCH]):
@@ -311,7 +317,7 @@ func enter_state(new_state, old_state):
 		states.RUNNING:
 			parent.play_animation('run')
 		states.DOWN_TILT:
-			parent.play_animation("down_tilt")
+			parent.play_animation("d_tilt")
  
 func exit_state(old_state, new_state):
 	match old_state:
@@ -369,6 +375,6 @@ func Landing():
 		else: 
 			return false
 func Falling():
-	if state_includes([states.STAND, states.DASH, states.RUNNING]):
+	if state_includes([states.STAND, states.DASH, states.RUNNING, states.WALK, states.CROUCH]):
 		if not parent.Chao_L.is_colliding() and not parent.Chao_R.is_colliding():
 			return true

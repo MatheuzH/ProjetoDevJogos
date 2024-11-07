@@ -43,8 +43,8 @@ shape = SubResource("RectangleShape2D_db503")
 
 [node name="Jogador1" parent="." instance=ExtResource("2_jx3o4")]
 position = Vector2(456, 469)
-ID = 1
+id = 1
 
 [node name="Jogador2" parent="." instance=ExtResource("2_jx3o4")]
 position = Vector2(686, 471)
-ID = 2
+id = 2

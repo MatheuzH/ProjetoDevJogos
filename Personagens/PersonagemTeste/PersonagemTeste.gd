@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var id:int
+
 #ground movement
 const RUN_SPEED = 350
 const DASH_SPEED = 450
@@ -92,7 +94,7 @@ func set_all_collision_mask_value(layer:int, value:bool):
 #Tilt Attacks 
 func DOWN_TILT():
 	if frame == 5:
-		create_hitbox(40,20,8,90,3,120,3,'normal',Vector2(64,32),0,1)
+		create_hitbox(40,20,8,90,3,120,30,'normal',Vector2(64,32),0,1)
 	if frame >=21:
 		return true 
 	return false

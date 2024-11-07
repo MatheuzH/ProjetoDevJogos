@@ -74,8 +74,8 @@ one_way_collision = true
 
 [node name="Jogador1" parent="." instance=ExtResource("2_pda7h")]
 position = Vector2(415, 374)
-ID = 1
+id = 1
 
 [node name="Jogador2" parent="." instance=ExtResource("2_pda7h")]
 position = Vector2(740, 372)
-ID = 2
+id = 2
