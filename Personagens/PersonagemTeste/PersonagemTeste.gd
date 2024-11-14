@@ -95,6 +95,7 @@ func Frame():
 func _physics_process(delta: float) -> void:
 	$State.text = str(selfState) #mostra estado atual
 	$Frames.text = str(frame) #mostra quantos frames passaram desde a ultima troca de estado
+	$Damage.text = str(percentage)
 	pass
 	
 func set_all_collision_mask_value(layer:int, value:bool):
@@ -157,7 +158,7 @@ func FOWARD_TILT():
 
 func DOWN_TILT():
 	if frame == 5:
-		create_hitbox(52, 26, 8, 90, 3, 10, 7, 'normal', Vector2(50,23), 0, 1)
+		create_hitbox(52, 26, 8, 90, 30, 10, 7, 'normal', Vector2(50,23), 0, 1)
 	if frame >=21:
 		return true 
 	return false

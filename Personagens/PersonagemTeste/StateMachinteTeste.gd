@@ -24,6 +24,7 @@ func _ready():
 	add_state('B_AIR')
 	add_state('D_AIR')
 	add_state('N_AIR')
+	add_state('HITSTUN')
 	call_deferred("set_state", states.STAND)
 	
 
@@ -38,6 +39,7 @@ func get_transition(delta):
 	
 	if parent.position.y > 700:  #impede o personagem de sumir se cair
 		parent.position.y = -100
+		parent.position.x = 576
 	
 	if Landing(): #detecta se o personagem esta aterrizando independente de estado
 		parent.in_fastfall = false
@@ -312,8 +314,8 @@ func get_transition(delta):
 		states.B_AIR:
 			air_movement()
 			if parent.frame == 0:
-				parent.UP_AIR()
-			if parent.UP_AIR():
+				parent.BACK_AIR()
+			if parent.BACK_AIR():
 				parent.Frame()
 				return states.AIR
 		states.F_AIR:
@@ -412,7 +414,9 @@ func get_transition(delta):
 				parent.Frame()
 				return states.STAND
 				
-				
+		states.HITSTUN:
+			if parent.frame >= parent.hitstun:
+				return states.AIR
 	return null
 func AERIAL():
 	if state_includes([states.AIR]):
