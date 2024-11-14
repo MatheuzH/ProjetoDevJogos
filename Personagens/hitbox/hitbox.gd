@@ -47,7 +47,7 @@ func _ready():
 func _physics_process(delta):
 	if framez<duration:
 		framez += 1
-	elif framez == duration:
+	elif framez >= duration:
 		Engine.time_scale = 1
 		queue_free()
 		return

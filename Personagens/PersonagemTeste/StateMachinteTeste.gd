@@ -32,7 +32,7 @@ func state_logic(delta):
 	parent._physics_process(delta)
 
 func get_transition(delta):
-	parent.states.text = states.find_key(state) #mostra estado atual do personagem
+	parent.selfState = states.find_key(state) #mostra estado atual do personagem
 	
 	parent.jogador.text = "J" + str(id) #mostra o jogador que controla o personagem
 	
@@ -61,6 +61,7 @@ func get_transition(delta):
 	
 	match state: #coracao da maquina de estados
 		states.STAND: #parado
+			parent.reset_Jumps()
 			if Input.is_action_pressed("right_%s" % id) or Input.is_action_pressed("modfier_%s" % id) and Input.is_action_just_pressed("right_%s" % id):
 				parent.velocity.x = parent.WALK_SPEED
 				parent.Frame()
@@ -105,6 +106,10 @@ func get_transition(delta):
 				
 		states.JUMP_SQUAT: #iniciando pulo
 			if parent.frame >= parent.JUMPSQUAT:
+				if Input.is_action_pressed("left_%s" % id):
+					parent.turn(true)
+				elif Input.is_action_pressed("right_%s" % id):
+					parent.turn(false)
 				if Input.is_action_pressed("jump_%s" % id):
 					return states.FULL_HOP
 				else:
@@ -266,6 +271,9 @@ func get_transition(delta):
 				parent.velocity.x = clamp(parent.velocity.x,parent.velocity.x,0)
 				
 			if Input.is_action_pressed("jump_%s" % id):
+				if Input.is_action_pressed("modfier_%s" % id):
+					parent.Frame()
+					return states.JUMP_SQUAT
 				parent.in_fastfall = true
 				parent.set_all_collision_mask_value(3,false)
 				parent.Frame()
@@ -274,6 +282,7 @@ func get_transition(delta):
 			
 		states.AIR: #no ar
 			air_movement()
+			
 		states.AIR_ATTACK:
 			air_movement()
 			parent.Frame()
@@ -330,6 +339,7 @@ func get_transition(delta):
 				return states.AIR
 		
 		states.LANDING: #pousando
+			parent.reset_Jumps()
 			if parent.frame >= parent.LANDING_FRAMES + parent.landing_lag:
 				parent.Frame()
 				
@@ -396,6 +406,8 @@ func get_transition(delta):
 		states.FOWARD_STRONG:
 			if parent.frame == 0:
 				parent.FOWARD_STRONG()
+			if parent.frame >= 22:
+				parent.velocity.x *= 0.6
 			if parent.FOWARD_STRONG() == true:
 				parent.Frame()
 				return states.STAND
@@ -427,6 +439,8 @@ func enter_state(new_state, old_state):
 			parent.play_animation('dash')
 		states.RUNNING:
 			parent.play_animation('run')
+		states.WALK:
+			parent.play_animation('walk')
 		states.UP_TILT:
 			parent.play_animation('u_tilt')
 		states.FOWARD_TILT:
@@ -452,6 +466,9 @@ func exit_state(old_state, new_state):
 			parent.play_animation('uncrouch')
 
 func air_movement():
+	if Input.is_action_just_pressed("jump_%s" % id) and parent.air_jumps > 0:
+		parent.air_jumps -= 1
+		parent.velocity.y = -parent.DOUBLEJUMPFORCE
 	#gravidade
 	if parent.velocity.y < parent.MAX_FALLSPEED:
 		parent.velocity.y += parent.GRAVITY
@@ -459,7 +476,7 @@ func air_movement():
 	
 	
 		
-	if Input.is_action_just_pressed("down_%s" % id):
+	if Input.is_action_just_pressed("down_%s" % id) and ! Input.is_action_pressed("modfier_%s" % id):
 		parent.velocity.y = parent.FASTFALL_SPEED
 		parent.in_fastfall = true
 		parent.set_collision_mask_value(3,false)
